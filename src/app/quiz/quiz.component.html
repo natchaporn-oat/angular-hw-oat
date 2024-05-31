@@ -1,0 +1,46 @@
+<div class="quiz" *ngIf="category">
+  <h3>{{ category.title }}</h3>
+  <h2>{{ formatTime(countdown) }}</h2>
+  <h3>{{ currentIndex + 1 }} / {{ totalQuiz }}</h3>
+  <div>
+    <h3>
+      {{ currentIndex + 1 }}.{{ category.questionInfo[currentIndex].title }}
+    </h3>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="
+          let answer of category.questionInfo[currentIndex].questionAnswerInfo
+        "
+      >
+        <input
+          type="checkbox"
+          id="{{ answer.questionAnswerId }}"
+          [checked]="isCheckboxChecked(answer.questionAnswerId)"
+          (change)="updateCheckboxState(answer.questionAnswerId)"
+        />
+        <label for="{{ answer.questionAnswerId }}">{{ answer.answer }}</label>
+      </li>
+    </ul>
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="backQuiz()"
+    [disabled]="currentIndex === 0"
+  >
+    Previous
+  </button>
+  <button type="button" class="btn btn-success" (click)="submit()">
+    Submit
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="currentIndex === totalQuiz - 1"
+    (click)="nextQuiz()"
+  >
+    Next
+  </button>
+</div>

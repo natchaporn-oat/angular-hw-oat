@@ -1,0 +1,15 @@
+<div class="quiz-div">
+  <div class="center">
+    <h1>Quiz</h1>
+    <ul class="list-group">
+      <li
+        *ngFor="let category of quizCategories; let i = index"
+        class="list-group-item"
+        (click)="quizDetail(category.questionCategoryId)"
+      >
+        <span class="index">{{ i + 1 }}.</span>
+        <span>{{ category.title }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
